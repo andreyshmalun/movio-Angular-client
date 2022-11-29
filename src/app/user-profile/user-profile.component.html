@@ -34,7 +34,7 @@
             matInput
             [(ngModel)]="updatedUser.Email"
             type="email"
-            value="{{ updatedUser.Email }}"
+            value="{{ user.Email }}"
             name="Email"
             required
           />
@@ -45,7 +45,7 @@
             matInput
             [(ngModel)]="updatedUser.Birthday"
             type="date"
-            value="{{ updatedUser.Birthday | date: 'yyyy-MM-dd' }}"
+            value="{{ user.Birthday | date: 'yyyy-MM-dd' }}"
             name="Birthday"
           />
         </mat-form-field>
