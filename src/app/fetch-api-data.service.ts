@@ -6,7 +6,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { flatMap, map, find } from 'rxjs/operators';
 
 //Declaring the api url that will provide data for the client app
 const apiUrl = 'https://movio-app.herokuapp.com/';
@@ -20,7 +20,6 @@ export class FetchApiDataService {
 
   //User registration
   public userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http
       .post(apiUrl + 'users', userDetails)
       .pipe(catchError(this.handleError));
@@ -28,7 +27,6 @@ export class FetchApiDataService {
 
   //User login
   public userLogin(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http
       .post(apiUrl + 'login', userDetails)
       .pipe(catchError(this.handleError));
@@ -87,12 +85,16 @@ export class FetchApiDataService {
     const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
     return this.http
-      .get(`${apiUrl}users/${username}`, {
+      .get(`${apiUrl}users`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
       })
-      .pipe(map(this.extractResponseData), catchError(this.handleError));
+      .pipe(
+        flatMap(this.extractResponseData),
+        find((u: any) => u.Username === username),
+        catchError(this.handleError)
+      );
   }
 
   //Get favourite movies for a user
@@ -139,14 +141,12 @@ export class FetchApiDataService {
   }
 
   //Delete user
-  deleteUser(updatedUser: any): Observable<any> {
+  deleteUser(): Observable<any> {
     const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
     return this.http
       .delete(`${apiUrl}users/${username}`, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token,
-        }),
+        headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }

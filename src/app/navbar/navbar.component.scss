@@ -1,0 +1,26 @@
+$cardColor: #404258;
+$textColor: #fff;
+$boxShadowColor: #1e1e1e;
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  padding: 0 16px;
+  z-index: 1;
+  align-items: center;
+  height: 45px;
+  color: $textColor;
+  box-shadow: 0 5px 10px $boxShadowColor;
+  background-color: $cardColor;
+  justify-content: space-between;
+}
+
+span {
+  color: crimson;
+}
+
+.logo {
+  font-size: 32px;
+}

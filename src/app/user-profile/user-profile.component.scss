@@ -1,0 +1,55 @@
+$cardColor: #404258;
+$labelColor: rgb(197, 197, 197);
+$textColor: #fff;
+$boxShadowColor: #1e1e1e;
+$backgroundColor: #474e68;
+
+.profile-page {
+  align-items: center;
+  padding: 30px 40px;
+  background-color: $backgroundColor;
+  height: 100vh;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12;
+}
+
+.profile-card {
+  width: 30%;
+}
+.mat-card {
+  max-width: 600px;
+  margin: 45px auto;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px $boxShadowColor;
+  background-color: $cardColor;
+  justify-content: space-evenly;
+}
+
+.mat-card-header {
+  margin-bottom: 20px;
+  color: $textColor;
+  display: flex;
+  justify-content: center;
+}
+
+mat-label {
+  color: $labelColor;
+}
+
+input.mat-input-element {
+  color: $textColor;
+}
+
+.mat-card > .mat-card-actions {
+  margin-left: 0;
+  padding-bottom: 0;
+  display: flex;
+  justify-content: space-evenly;
+}

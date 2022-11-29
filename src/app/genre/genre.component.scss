@@ -1,0 +1,31 @@
+$cardColor: #404258;
+$textColor: #fff;
+$boxShadowColor: #1e1e1e;
+
+.genre-dialog {
+  background-color: $cardColor;
+  margin: -24px;
+  box-shadow: none;
+}
+
+.genre-dialog-title {
+  color: $textColor;
+}
+
+.genre-dialog-content {
+  color: $textColor;
+}
+
+.genre-close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 0;
+  line-height: 14px;
+  min-width: auto;
+  border: none;
+  font-size: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  color: $textColor;
+}
