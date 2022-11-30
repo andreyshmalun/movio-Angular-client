@@ -30,8 +30,10 @@ export class UserProfileComponent implements OnInit {
     this.getUser();
   }
 
-  //Fetch user data via API
-
+  /**
+   * The function getUser() is a void function that subscribes to the getUser() function in the
+   * fetchApiData service and returns the user object
+   */
   getUser(): void {
     this.fetchApiData.getUser().subscribe((result: any) => {
       localStorage.getItem('user');
@@ -40,8 +42,10 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  //Update user data, such as username, password, email, or birthday
-
+  /**
+   * The function takes the updated user object and sends it to the API. If the username has been
+   * changed, the user is logged out and redirected to the welcome page
+   */
   editUser(): void {
     this.fetchApiData.editUser(this.updatedUser).subscribe((result) => {
       console.log(result);
@@ -62,8 +66,10 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  //Delete user data for the user that is logged in
-
+  /**
+   * If the user confirms that they want to delete their account, the user is routed to the welcome
+   * page, a snackbar is displayed, and the user's data is deleted from the database
+   */
   deleteUser(): void {
     if (confirm('All your data will be lost - this cannnot be undone!')) {
       this.router.navigate(['welcome']).then(() => {

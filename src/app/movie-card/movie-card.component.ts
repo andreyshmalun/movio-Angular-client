@@ -27,8 +27,11 @@ export class MovieCardComponent {
     this.getFavorites();
   }
 
-  //Fetch movies via API and set movies state to returned JSON file
-
+  /**
+   * The getMovies() function is a void function that calls the getAllMovies() function from the
+   * fetchApiData service, which returns an observable of type any. The observable is then subscribed
+   * to, and the response is assigned to the movies property
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -36,8 +39,11 @@ export class MovieCardComponent {
     });
   }
 
-  //Fetch user info via API and set favorites state to returned JSON file
-
+  /**
+   * This function is called when the user clicks on the "Favorites" tab. It calls the getUser()
+   * function from the fetchApiData service, which returns an observable. The observable is then
+   * subscribed to, and the response is assigned to the favorites property
+   */
   getFavorites(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.favorites = resp.FavoriteMovies;
@@ -45,14 +51,21 @@ export class MovieCardComponent {
     });
   }
 
-  //Checks if a movie is included in a user's favorite movies
-
+  /**
+   * It returns true if the favorites array includes the id passed in as an argument
+   * @param {string} id - The id of the movie to check if it's a favorite.
+   * @returns A boolean value.
+   */
   isFavorite(id: string): boolean {
     return this.favorites.includes(id);
   }
 
-  //Adds a movie to a user's favorites via an API call
-
+  /**
+   * The function takes in an id, logs it to the console, then calls the addFavoriteMovie function from
+   * the fetchApiData service, which takes in the id as a parameter. The function then subscribes to
+   * the result, logs it to the console, opens a snackbar, and then calls the ngOnInit function
+   * @param {string} id - string - the id of the movie that we want to add to our favorites
+   */
   addToFavorites(id: string): void {
     console.log(id);
     this.fetchApiData.addFavoriteMovie(id).subscribe((result) => {
@@ -64,8 +77,11 @@ export class MovieCardComponent {
     });
   }
 
-  //Removes a movie from a user's favorites via an API call
-
+  /**
+   * The function takes in an id as a parameter, and then uses the deleteFavoriteMovie() function from
+   * the fetchApiData service to delete the movie from the database
+   * @param {string} id - string - the id of the movie to be removed from the favorites list
+   */
   removeFromFavorites(id: string): void {
     console.log(id);
     this.fetchApiData.deleteFavoriteMovie(id).subscribe((result) => {
@@ -77,8 +93,12 @@ export class MovieCardComponent {
     });
   }
 
-  //Opens genre information from GenreComponent
-
+  /**
+   * The function opens a dialog box with the GenreComponent, and passes in the name and description of
+   * the genre
+   * @param {string} name - string - the name of the genre
+   * @param {string} description - string - the description of the genre
+   */
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreComponent, {
       data: {
@@ -90,8 +110,12 @@ export class MovieCardComponent {
     });
   }
 
-  //Opens director information from DirectorComponent
-
+  /**
+   * This function opens a dialog box with the director's name, bio, and birthday
+   * @param {string} name - string - The name of the director
+   * @param {string} bio - string, birthday: string
+   * @param {string} birthday - string - the birthday of the director
+   */
   openDirector(name: string, bio: string, birthday: string): void {
     this.dialog.open(DirectorComponent, {
       data: {
@@ -104,8 +128,12 @@ export class MovieCardComponent {
     });
   }
 
-  //Opens movie details from MovieDetailsComponent
-
+  /**
+   * The function takes in a title and description as parameters, and then opens a dialog box with the
+   * title and description as the data
+   * @param {string} title - string, description: string
+   * @param {string} description - string - The description of the movie
+   */
   openSummary(title: string, description: string): void {
     this.dialog.open(MovieDetailsComponent, {
       data: {

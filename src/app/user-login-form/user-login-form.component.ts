@@ -21,7 +21,11 @@ export class UserLoginFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * The function takes the user data from the form and sends it to the API. If the API returns a
+   * token, the user is logged in and the modal is closed. If the API returns an error, the error is
+   * displayed in a snackbar
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe(
       (result) => {

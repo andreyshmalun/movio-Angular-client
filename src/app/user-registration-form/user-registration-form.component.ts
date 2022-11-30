@@ -20,7 +20,10 @@ export class UserRegistrationFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * The function calls the userRegistration() function from the fetchApiData service, which returns an
+   * observable. The observable is subscribed to, and the result is passed to the snackBar component
+   */
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe(
       (result) => {
