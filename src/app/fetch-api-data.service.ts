@@ -9,7 +9,7 @@ import { Observable, throwError } from 'rxjs';
 import { flatMap, map, find } from 'rxjs/operators';
 
 //Declaring the api url that will provide data for the client app
-const apiUrl = 'https://movio-app.herokuapp.com/';
+const apiUrl = 'https://movio.onrender.com/';
 @Injectable({
   providedIn: 'root',
 })
